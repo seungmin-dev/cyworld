@@ -6,12 +6,12 @@ const Menu = () => {
   const router = useRouter();
 
   return (
-    <>
+    <div className="flex flex-col pt-3">
       <Link href="/">
         <button
           className={cls(
-            "w-16 h-10 rounded-md border-[0.5px] text-xs mb-1 border-black",
-            router.pathname === "/" ? "bg-white" : "bg-[#55B2D4] text-white"
+            "w-16 h-10 rounded-r-md border-[0.5px] text-xs mb-1 border-black",
+            router.pathname === "/" ? "bg-white" : "bg-[#298eb5] text-white"
           )}
         >
           홈
@@ -20,10 +20,10 @@ const Menu = () => {
       <Link href="/game">
         <button
           className={cls(
-            "w-16 h-10 rounded-md border-[0.5px] text-xs mb-1 border-black",
+            "w-16 h-10 rounded-r-md border-[0.5px] text-xs mb-1 border-black",
             router.pathname.includes("/game")
               ? "bg-white"
-              : "bg-[#55B2D4] text-white"
+              : "bg-[#298eb5] text-white"
           )}
         >
           게임
@@ -32,16 +32,16 @@ const Menu = () => {
       <Link href="/diary">
         <button
           className={cls(
-            "w-16 h-10 rounded-md border-[0.5px] text-xs mb-1 border-black",
+            "w-16 h-10 rounded-r-md border-[0.5px] text-xs mb-1 border-black",
             router.pathname.includes("/diary")
               ? "bg-white"
-              : "bg-[#55B2D4] text-white"
+              : "bg-[#298eb5] text-white"
           )}
         >
           다이어리
         </button>
       </Link>
-    </>
+    </div>
   );
 };
 
