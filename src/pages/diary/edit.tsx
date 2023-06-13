@@ -22,6 +22,7 @@ const UpdateDiary = () => {
   useEffect(() => {
     setValue("title", data.fetchBoard.title);
     setValue("contents", data.fetchBoard.contents);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onValid = async (form: DiaryForm) => {
