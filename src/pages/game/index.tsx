@@ -3,6 +3,7 @@ import Image from "next/image";
 import lottoImg from "../../../public/images/lotto.png";
 import trainImg from "../../../public/images/train.png";
 import { useEffect, useRef, useState } from "react";
+import { Title } from "@/components/title";
 
 const Game = () => {
   const [lastWord, setLastWord] = useState("코드캠프");
@@ -32,11 +33,8 @@ const Game = () => {
 
   return (
     <Layout>
-      <div className="mb-3 border-b-[1px] border-zinc-400 flex justify-between items-center">
-        <h4 className="text-[#55B2D4] font-bold mb-1 pr-3">GAME</h4>
-        <p className="font-light text-xs flex-grow">TODAY CHOICE</p>
-      </div>
-      <div className="w-100">
+      <Title titleText="GAME" subText="TODAY CHOICE" />
+      <div className="w-100 pt-2">
         <div className="w-1/2 m-auto bg-zinc-100 rounded-xl border-[1px] border-zinc-400 p-5 mb-3 text-center">
           <Image src={trainImg} alt="끝말잇기 이미지" className="m-auto mb-3" />
           <h2 className="font-bold text-sm pb-1">끝말잇기</h2>

@@ -3,6 +3,8 @@ import { useMutation, useQuery } from "@apollo/client";
 import Link from "next/link";
 import { DELETE_DIARY, GET_DIARY, GET_LIST } from "../api/query";
 import { useRouter } from "next/router";
+import { Title } from "@/components/title";
+import { Button } from "@/components/button";
 
 const DiaryDetail = () => {
   const router = useRouter();
@@ -31,10 +33,8 @@ const DiaryDetail = () => {
 
   return (
     <Layout>
-      <div className="mb-3 border-b-[1px] border-zinc-400 flex justify-between items-center">
-        <h4 className="text-[#55B2D4] font-bold mb-1 pr-3">DIARY</h4>
-      </div>
-      <div className="w-full py-1 pl-3 bg-zinc-300">
+      <Title titleText="DIARY" />
+      <div className="w-full py-1 mt-2 pl-3 bg-zinc-300">
         <span className="text-sm text-zinc-700">
           {data?.fetchBoard.createdAt.slice(0, 10)}
         </span>
@@ -45,19 +45,9 @@ const DiaryDetail = () => {
         </h2>
         <p className="text-sm text-zinc-500">{data?.fetchBoard.contents}</p>
       </div>
-      <div className="pt-2 text-center">
-        <button
-          onClick={onEdit}
-          className="bg-white text-xs p-[2px] px-2 rounded-md border-[1px] border-zinc-400 text-zinc-900 mb-2 mr-2"
-        >
-          수정하기
-        </button>
-        <button
-          onClick={onDelete}
-          className="bg-white text-xs p-[2px] px-2 rounded-md border-[1px] border-zinc-400 text-zinc-900 mb-2"
-        >
-          삭제하기
-        </button>
+      <div className="pt-2 text-center space-x-1">
+        <Button onClick={onEdit} text="수정하기" />
+        <Button onClick={onDelete} text="삭제하기" />
       </div>
       <Link href="/diary">
         <span className="underline text-zinc-500 font-light text-sm">
