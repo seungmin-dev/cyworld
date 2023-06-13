@@ -1,7 +1,11 @@
 import Layout from "@/components/layout";
 import { playlist } from "@/data/playlist";
+import { GET_LIST } from "./api/query";
+import { useQuery } from "@apollo/client";
 
 export default function Home() {
+  const { data } = useQuery(GET_LIST);
+  console.log(data);
   return (
     <Layout>
       <div className="mb-3">
@@ -11,21 +15,25 @@ export default function Home() {
         <div className="flex justify-between pb-1">
           <div className="w-1/2">
             <div>
-              {[1, 2, 3, 4].map((index) => (
-                <p key={index} className="text-sm mb-1">
-                  <span className="p-1 bg-[#EE3E61] rounded-md text-white text-xs mr-1">
-                    다이어리
-                  </span>
-                  다이어리 제목
-                </p>
-              ))}
+              {data.fetchBoards
+                .slice(0, 4)
+                .map((post: { title: string }, index: number) => (
+                  <p key={index} className="text-sm mb-1">
+                    <span className="p-1 bg-[#EE3E61] rounded-md text-white text-xs mr-1">
+                      다이어리
+                    </span>
+                    {post.title}
+                  </p>
+                ))}
             </div>
           </div>
           <div className="w-2/5">
             <div className="flex px-[5px] py-[2px] border-y-[1px] border-dashed border-zinc-400 text-sm">
               <p className="w-1/2">
                 다이어리{" "}
-                <span className="text-[#55B2D4] font-semibold">0/ 75</span>
+                <span className="text-[#55B2D4] font-semibold">
+                  0/ {data.fetchBoards.length}
+                </span>
               </p>
               <p className="w-1/2">
                 사진첩{" "}
