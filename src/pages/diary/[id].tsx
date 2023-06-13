@@ -1,16 +1,33 @@
 import Layout from "@/components/layout";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import Link from "next/link";
-import { GET_DIARY } from "../api/query";
+import { DELETE_DIARY, GET_DIARY, GET_LIST } from "../api/query";
 import { useRouter } from "next/router";
 
 const DiaryDetail = () => {
   const router = useRouter();
+  const [deleteDiary] = useMutation(DELETE_DIARY);
   const { data } = useQuery(GET_DIARY, {
     variables: {
       number: Number(router.query.id),
     },
+    fetchPolicy: "cache-and-network",
   });
+
+  const onEdit = () => {
+    router.push(`/diary/edit?id=${router.query.id}`);
+  };
+
+  const onDelete = async () => {
+    const result = await deleteDiary({
+      variables: { number: Number(router.query.id) },
+      onCompleted: () => {
+        alert("다이어리가 정상적으로 삭제되었습니다 😉");
+      },
+      refetchQueries: [{ query: GET_LIST }],
+    });
+    router.push("/diary");
+  };
 
   return (
     <Layout>
@@ -29,10 +46,16 @@ const DiaryDetail = () => {
         <p className="text-sm text-zinc-500">{data?.fetchBoard.contents}</p>
       </div>
       <div className="pt-2 text-center">
-        <button className="bg-white text-xs p-[2px] px-2 rounded-md border-[1px] border-zinc-400 text-zinc-900 mb-2 mr-2">
+        <button
+          onClick={onEdit}
+          className="bg-white text-xs p-[2px] px-2 rounded-md border-[1px] border-zinc-400 text-zinc-900 mb-2 mr-2"
+        >
           수정하기
         </button>
-        <button className="bg-white text-xs p-[2px] px-2 rounded-md border-[1px] border-zinc-400 text-zinc-900 mb-2">
+        <button
+          onClick={onDelete}
+          className="bg-white text-xs p-[2px] px-2 rounded-md border-[1px] border-zinc-400 text-zinc-900 mb-2"
+        >
           삭제하기
         </button>
       </div>

@@ -6,7 +6,6 @@ import Link from "next/link";
 
 export default function Home() {
   const { data } = useQuery(GET_LIST);
-  console.log(data);
   return (
     <Layout>
       <div className="mb-3">
