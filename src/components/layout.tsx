@@ -3,6 +3,13 @@ import Menu from "./menu";
 import profileImg from "../../public/images/profile_image.png";
 import innerBox from "../../public/images/inner_box.png";
 import bgImage from "../../public/images/background_img.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faFaceSmile,
+  faHashtag,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -12,9 +19,11 @@ export default function Layout({ children }: LayoutProps) {
     <>
       <div className="absolute w-[808px] h-[544px] z-20 m-3 mt-4 pt-7">
         <div className="flex mx-8 items-center">
-          <p className="w-48 text-xs text-center">TODAY 0 | TOTAL 12345</p>
+          <p className="w-48 text-xs text-center font-titleFont">
+            TODAY 0 | TOTAL 12345
+          </p>
           <div className="flex-grow flex justify-between items-center">
-            <h2 className="text-[#55B2D4] font-bold text-xl">
+            <h2 className="text-[#55B2D4] font-bold text-lg pl-2 font-titleFont">
               사이좋은 사람들, 싸이월드
             </h2>
             <p className="ml-2 text-zinc-400 font-light pr-2 text-xs">
@@ -35,10 +44,18 @@ export default function Layout({ children }: LayoutProps) {
                       className="w-6/7 mb-4"
                     />
                     <div className="pt-4 border-t-[0.5px] border-dashed border-black text-sm divide-y-4 divide-transparent">
-                      <h4>이름</h4>
-                      <h4>Phone</h4>
-                      <h4>Email</h4>
-                      <h4>인스타그램</h4>
+                      <h4>
+                        <FontAwesomeIcon icon={faFaceSmile} /> 이름
+                      </h4>
+                      <h4>
+                        <FontAwesomeIcon icon={faPhone} /> Phone
+                      </h4>
+                      <h4>
+                        <FontAwesomeIcon icon={faEnvelope} /> Email
+                      </h4>
+                      <h4>
+                        <FontAwesomeIcon icon={faHashtag} /> 인스타그램
+                      </h4>
                     </div>
                   </div>
                   <div className="text-sm">
