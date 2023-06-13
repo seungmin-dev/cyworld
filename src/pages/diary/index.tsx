@@ -13,6 +13,24 @@ const Diary = () => {
           </button>
         </Link>
       </div>
+      <div className="w-full h-[370px] overflow-y-scroll">
+        {[1, 2, 3, 4, 5].map((item, index) => (
+          // <Link href={`/diary/${id}`} key={index}>
+          <Link href="/diary/id" key={index}>
+            <div className="w-full border-[1px] border-zinc-400 mb-2 p-3 px-5 flex justify-between items-center">
+              <div>
+                <span className="bg-[#55B2D4] text-white text-xs rounded-sm px-[3px] py-[2px]">
+                  2023-06-13
+                </span>
+                <h2 className="text-zinc-700 text-md">제목 : 다이어리 제목</h2>
+              </div>
+              <h2 className="text-zinc-400 underline font-light text-sm">
+                자세히 보러 가기 {">"}
+              </h2>
+            </div>
+          </Link>
+        ))}
+      </div>
     </Layout>
   );
 };
